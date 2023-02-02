@@ -5,7 +5,9 @@
       <router-link to="/favorites">Favorites</router-link> |
       <a href="javascript:void(0)" @click="logOut">Log out</a>
     </nav>
-    <router-view/>
+    <transition name="fade">
+      <router-view class="view"/>
+    </transition>
   </div>
 </template>
 
@@ -41,5 +43,12 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
