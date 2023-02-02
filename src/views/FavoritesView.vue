@@ -43,7 +43,6 @@ export default {
       return JSON.parse(localStorage.getItem('pokemon'))
     },
     localFavorites () {
-      console.log(JSON.parse(localStorage.getItem('pokemon')).filter(el => el.favorite))
       return JSON.parse(localStorage.getItem('pokemon')).filter(el => el.favorite)
     }
   },
