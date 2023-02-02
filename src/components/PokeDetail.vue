@@ -3,7 +3,14 @@
     <template v-if="!isEmpty">
       <h1 class="text-capitalize">{{ pokemon?.name }} - #{{ pokemon?.id }}</h1>
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 position-relative">
+          <b-icon
+            icon="star-fill"
+            font-scale="3"
+            class="position-absolute p-2"
+            :variant="isFavorite"
+            @click.stop="$emit('addToFavorites', pokemon.id)"
+          ></b-icon>
           <img :src="URLImage" class="img-fluid w-100 img-thumbnail" :alt="pokemon?.name">
         </div>
         <div class="col-12 col-md-6">
@@ -78,6 +85,9 @@ export default {
     },
     isEmpty() {
       return Object.keys(this.pokemon).length === 0;
+    },
+    isFavorite () {
+      return this.pokemon.favorite ? 'warning' : 'secondary'
     }
   },
   methods: {

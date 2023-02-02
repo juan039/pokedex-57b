@@ -13,6 +13,7 @@
           v-for="(el, index) in pokemon"
           :key="index"
           :pokemon="el"
+          @addToFavorites="addToFavorites"
         />
       </template>
 
@@ -66,7 +67,6 @@ export default {
               this.pokemon.push(this.filterData(el))
             })
             localStorage.setItem('pokemon', JSON.stringify(this.pokemon))
-            console.log(this.pokemon)
           })
           .finally(() => {
             this.buttonDisabled = false
@@ -87,6 +87,15 @@ export default {
         },
         favorite: false
       }
+    },
+    addToFavorites (id) {
+      this.pokemon.find((el, index) => {
+        if (el.id == id) {
+          this.pokemon[index].favorite = !this.pokemon[index].favorite
+        }
+        return
+      })
+      localStorage.setItem('pokemon', JSON.stringify(this.pokemon))
     }
   }
 }
