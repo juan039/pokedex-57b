@@ -1,12 +1,32 @@
 <template>
   <div class="home">
     <div class="container row mx-auto">
+
+      <form class="row g-2" @submit.prevent="searchPokemon">
+        <div class="col-7 ">
+          <label for="pokeSearch" class="visually-hidden">Search Pokemon</label>
+          <input
+            type="text"
+            class="form-control"
+            id="pokeSearch"
+            placeholder="Search Pokemon by name or ID"
+            v-model="searchTerm">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Search</button>
+        </div>
+      </form>
           
       <template v-if="pokemon.length == 0">
-        <PokeCardEmpty
-          v-for="n in 20"
-          :key="n"
-        />
+        <template v-if="!error">
+          <PokeCardEmpty
+            v-for="n in 20"
+            :key="n"
+          />
+        </template>
+        <h2 v-else>
+          {{ error }}
+        </h2>
       </template>
       <template v-else>
         <PokeCard 
@@ -18,7 +38,8 @@
       </template>
 
     </div>
-    <button :disabled="buttonDisabled" type="button" class="btn btn-info" @click="fetchPokemon">Load More</button>
+    <button v-if="pokemon.length <= 1" type="button" class="btn btn-info" @click="clearResults">Go Back</button>
+    <button v-else :disabled="buttonDisabled" type="button" class="btn btn-info" @click="fetchPokemon">Load More</button>
   </div>
 </template>
 
@@ -47,7 +68,9 @@ export default {
       offset: 0,
       baseURL: "https://pokeapi.co/api/v2/pokemon/",
       limit: 20,
-      buttonDisabled: true
+      buttonDisabled: true,
+      searchTerm: '',
+      error: ''
     }
   },
   computed: {
@@ -72,7 +95,6 @@ export default {
           
           this.offset += this.limit
         }).finally(() => {
-            console.log('termino')
             this.buttonDisabled = false
           })
     },
@@ -98,6 +120,21 @@ export default {
         return
       })
       localStorage.setItem('pokemon', JSON.stringify(this.pokemon))
+    },
+    searchPokemon () {
+      this.pokemon = []
+      this.fetchSinglePokemon(`${this.baseURL}${this.searchTerm}`)
+        .then(response => {
+          this.pokemon = [response]
+        }).catch(err => {
+          this.error = `Sorry, we are trying to catch 'em all`
+          console.error(err)
+        })
+    },
+    clearResults () {
+      this.pokemon = []
+      this.offset = 0,
+      this.fetchPokemon();
     }
   }
 }
