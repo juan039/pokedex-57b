@@ -57,6 +57,7 @@ export default {
   created() {
     if (this.localPokemon?.length > 0) {
       this.pokemon = [...this.localPokemon]
+      this.offset = this.pokemon.length
       this.buttonDisabled = false
     } else {
       this.fetchPokemon()
