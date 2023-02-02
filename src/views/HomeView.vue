@@ -36,6 +36,7 @@ export default {
   created() {
     if (this.localPokemon?.length > 0) {
       this.pokemon = [...this.localPokemon]
+      this.buttonDisabled = false
     } else {
       this.fetchPokemon()
     }
@@ -68,11 +69,12 @@ export default {
             })
             localStorage.setItem('pokemon', JSON.stringify(this.pokemon))
           })
-          .finally(() => {
+          
+          this.offset += this.limit
+        }).finally(() => {
+            console.log('termino')
             this.buttonDisabled = false
           })
-          this.offset += this.limit
-        })
     },
     fetchSinglePokemon (url) {
       return fetch(url).then(resp => resp.json())

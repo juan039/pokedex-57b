@@ -2,6 +2,7 @@
   <div id="app">
     <nav v-if="$route.path != '/login'">
       <router-link to="/">Home</router-link> |
+      <router-link to="/favorites">Favorites</router-link> |
       <a href="javascript:void(0)" @click="logOut">Log out</a>
     </nav>
     <router-view/>
