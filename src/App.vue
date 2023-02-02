@@ -1,13 +1,24 @@
 <template>
   <div id="app">
     <nav v-if="$route.path != '/login'">
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link> |
+      <a href="javascript:void(0)" @click="logOut">Log out</a>
     </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    logOut () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('pokemon')
+      this.$router.push({ path: "/login" })
+    }
+  }
+}
+</script>
 
 <style>
 #app {

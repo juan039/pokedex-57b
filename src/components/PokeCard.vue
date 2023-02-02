@@ -5,8 +5,8 @@
       <b-icon icon="star-fill" font-scale="3" class="position-absolute end-0 p-2" variant="secondary"></b-icon>
       <img :src="URLImage" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">{{pokemon.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ pokemonType }} - #{{ pokemon.id }}</h6>
+        <h5 class="card-title text-capitalize">{{pokemon.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted text-capitalize">{{ pokemonType }} - #{{ pokemon.id }}</h6>
       </div>
     </div>
   </div>
@@ -25,12 +25,15 @@ export default {
       return this.pokemon?.types[0]?.type?.name
     },
     URLImage () {
-      return this.pokemon.sprites.front_default
+      return this.pokemon?.sprites.front_default
     }
   },
   methods: {
     goToDetails () {
-      console.log('GO TO '+ this.pokemon.id)
+      this.$router.push({
+        name: 'details',
+        params: { id: this.pokemon?.id }
+      })
     }
   }
 }
