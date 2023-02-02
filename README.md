@@ -1,4 +1,4 @@
-# app
+# POKEDEX
 
 ## Project setup
 ```
@@ -15,7 +15,8 @@ npm run serve
 npm run build
 ```
 
-### Run your unit tests
+### Run your unit tests TBD
+This is not develop yet.
 ```
 npm run test:unit
 ```
@@ -25,5 +26,5 @@ npm run test:unit
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Video DEMO
+https://www.loom.com/share/0fd6964a1b0f4e3eb2f9f99ee8d3348d
