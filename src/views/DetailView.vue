@@ -3,9 +3,13 @@
     <div class="container">
       <button type="button" class="d-block btn btn-primary text" @click="$router.back()">Go Back</button>
     </div>
-    <PokeDetail 
+    <PokeDetail
+      v-if="!error"
       @addToFavorites="addToFavorites"
       :pokemon="pokemon"/>
+    <h2 v-else>
+      {{ error }}
+    </h2>
   </div>
 </template>
 
@@ -31,7 +35,8 @@ export default {
   },
   data () {
     return {
-      pokemon: {}
+      pokemon: {},
+      error: ''
     }
   },
   computed: {
@@ -48,6 +53,9 @@ export default {
         .then(response => response.json())
         .then(pokeResponse => {
           this.pokemon = {...pokeResponse, favorite:this.isFavorite}
+        }).catch(err => {
+          this.error = `Sorry, we are trying to catch 'em all`
+          console.error(err)
         })
     },
     addToFavorites (id) {
