@@ -3,16 +3,17 @@
     <div class="card" @click="goToDetails">
       <!-- if it's on favorites use variant warning -->
       <b-icon
+        ref="favIcon"
         icon="star-fill"
         font-scale="3"
         class="position-absolute end-0 p-2"
         :variant="isFavorite"
         @click.stop="$emit('addToFavorites', pokemon.id)"
       ></b-icon>
-      <img :src="URLImage" class="card-img-top" alt="...">
+      <img ref="image" :src="URLImage" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title text-capitalize">{{pokemon.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted text-capitalize">{{ pokemonType }} - #{{ pokemon.id }}</h6>
+        <h5 ref="name" class="card-title text-capitalize">{{pokemon.name}}</h5>
+        <h6 ref="type" class="card-subtitle mb-2 text-muted text-capitalize">{{ pokemonType }} - #{{ pokemon.id }}</h6>
       </div>
     </div>
   </div>
