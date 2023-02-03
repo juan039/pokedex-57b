@@ -1,6 +1,6 @@
 <template>
   <div class="login position-absolute top-50 start-50 translate-middle">
-    <h1>Welcome to your Pokedex</h1>
+    <h1 ref="title">Welcome to your Pokedex</h1>
 
     <div class="container">
       <LogIn />
