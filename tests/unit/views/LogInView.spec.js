@@ -8,7 +8,7 @@ const getWrapper = () => {
 
 describe('LogInView.vue', () => {
   describe('template', () => {
-    it('renders labels', () => {
+    it('renders title and child component', () => {
       const wrapper = getWrapper()
   
       expect(wrapper.findComponent({ref: 'title'}).text()).toMatch('Welcome to your Pokedex')

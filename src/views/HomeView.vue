@@ -2,10 +2,11 @@
   <div class="home">
     <div class="container row mx-auto">
 
-      <form class="row g-2" @submit.prevent="searchPokemon">
+      <form ref="searchForm" class="row g-2" @submit.prevent="searchPokemon">
         <div class="col-7 ">
           <label for="pokeSearch" class="visually-hidden">Search Pokemon</label>
           <input
+            ref="serchInput"
             type="text"
             class="form-control"
             id="pokeSearch"
@@ -13,7 +14,7 @@
             v-model="searchTerm">
         </div>
         <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">Search</button>
+          <button ref="searchButton" type="submit" class="btn btn-primary mb-3">Search</button>
         </div>
       </form>
           
@@ -95,9 +96,10 @@ export default {
           })
           
           this.offset += this.limit
-        }).finally(() => {
-            this.buttonDisabled = false
-          })
+        })
+        .finally(() => {
+          this.buttonDisabled = false
+        })
     },
     fetchSinglePokemon (url) {
       return fetch(url).then(resp => resp.json())
