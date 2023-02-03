@@ -1,25 +1,26 @@
 <template>
   <form @submit.prevent="submitForm">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <label ref="emailLabel" for="exampleInputEmail1" class="form-label">Email address</label>
       <input
+        ref="emailInput"
         type="email"
         class="form-control"
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         v-model="email">
-      <div id="emailHelp" class="form-text text-danger" v-if="errors && errors.email">
+      <div v-if="errors && errors.email" ref="emailError" id="emailHelp" class="form-text text-danger">
         {{errors.email}}  
       </div>
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" v-model="password">
-      <div id="passwordHelp" class="form-text text-danger" v-if="errors && errors.password">
+      <label ref="passwordLabel" for="exampleInputPassword1" class="form-label">Password</label>
+      <input ref="passwordInput" type="password" class="form-control" id="exampleInputPassword1" v-model="password">
+      <div v-if="errors && errors.password" ref="passwordError" id="passwordHelp" class="form-text text-danger">
         {{errors.password}}  
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button ref="submitButton" type="submit" class="btn btn-primary">Submit</button>
   </form>
 </template>
 
