@@ -42,9 +42,16 @@ describe('PokeCard.vue', () => {
       const wrapper = getWrapper()
   
       expect(wrapper.findComponent({ref: 'favIcon'}).exists()).toBeTruthy()
+      expect(wrapper.findComponent({ref: 'favIcon'}).attributes().variant).toBe('secondary')
       expect(wrapper.findComponent({ref: 'image'}).attributes().src).toBe('imageURL')
       expect(wrapper.findComponent({ref: 'name'}).text()).toBe('mew')
       expect(wrapper.findComponent({ref: 'type'}).text()).toBe('grass - #150')
+    })
+    it('renders star with variant as favorite', async() => {
+      const wrapper = getWrapper()
+
+      await wrapper.setProps({ pokemon: {...pokemon, favorite:true} })
+      expect(wrapper.findComponent({ref: 'favIcon'}).attributes().variant).toBe('warning')
     })
   })
 
