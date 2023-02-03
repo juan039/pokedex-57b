@@ -75,5 +75,41 @@ describe('HomeView.vue', () => {
         expect(mockMethod).toBeCalled()
       })
     })
+
+    describe('filterData', () => {
+      it('Filter Pokemon data', () => {
+        const pokemonMoreData = {
+          ...pokemon,
+          a: 3,
+          b: 5,
+          game: 'pokemon yellow'
+        }
+        const wrapper = getWrapper()
+        const pokemonFiltered = wrapper.vm.filterData(pokemonMoreData)
+        expect(pokemonFiltered).toEqual(pokemon)
+      })
+    })
+
+    describe('addToFavorites', () => {
+      it('Filter Pokemon data', async () => {
+
+        const wrapper = getWrapper()
+        await wrapper.setData({ pokemon: [pokemon] })
+        wrapper.vm.addToFavorites(150)
+        expect(wrapper.vm.pokemon[0].favorite).toBe(true)
+      })
+    })
+
+    describe('clearResults', () => {
+      it('Resets pokemon and offset', async () => {
+        const mockMethod = jest.spyOn(Component.methods, 'fetchPokemon')
+        const wrapper = getWrapper()
+        await wrapper.setData({ offset: 20 })
+        await wrapper.vm.clearResults()
+
+        expect(mockMethod).toBeCalled()
+        expect(wrapper.vm.offset).toBe(0)
+      })
+    })
   })
 })
