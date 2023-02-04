@@ -3,7 +3,7 @@
     <div class="container row mx-auto">
           
       <template v-if="localFavorites.length == 0">
-        <h1>You do not have any Pokemon as Favorite</h1>
+        <h1 ref="empty">You do not have any Pokemon as Favorite</h1>
       </template>
       <template v-else>
         <PokeCard 
