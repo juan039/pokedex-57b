@@ -62,7 +62,7 @@ describe('FavoritesView.vue', () => {
     })
   })
 
-  describe('mehtods', () => {
+  describe('mehtods', () => {
     describe('addToFavorites', () => {
       it('Filter Pokemon data', async () => {
         global.window.localStorage.setItem('pokemon', [pokemon])
