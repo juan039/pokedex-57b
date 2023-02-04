@@ -91,7 +91,7 @@ describe('HomeView.vue', () => {
     })
 
     describe('addToFavorites', () => {
-      it('Filter Pokemon data', async () => {
+      it('Add Pokemon to favorites', async () => {
 
         const wrapper = getWrapper()
         await wrapper.setData({ pokemon: [pokemon] })

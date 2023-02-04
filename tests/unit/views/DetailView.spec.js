@@ -84,4 +84,21 @@ describe('DetailView.vue', () => {
       expect(wrapper.findComponent({ref: 'error'}).text()).toBe(ErroMessage)
     })
   })
+
+  describe('methods', () => {
+    describe('addToFavorites', () => {
+      it('Add Pokemon to favorites', async () => {
+        global.window.localStorage.setItem('pokemon', [pokemon])
+
+        const spy = jest.spyOn(global.localStorage, 'setItem')
+
+        const wrapper = getWrapper()
+        await wrapper.setData({ pokemon: [pokemon] })
+        wrapper.vm.addToFavorites(150)
+        expect(spy).toHaveBeenCalled();
+        expect(wrapper.vm.pokemon.favorite).toBe(true)
+
+      })
+    })
+  })
 })
