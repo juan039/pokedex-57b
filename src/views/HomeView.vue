@@ -45,7 +45,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import PokeCard from '@/components/PokeCard.vue'
 import PokeCardEmpty from '@/components/PokeCardEmpty.vue'
 

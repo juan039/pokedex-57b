@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import PokeDetail from '@/components/PokeDetail.vue'
 
 export default {
