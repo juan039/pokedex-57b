@@ -5,7 +5,7 @@ import PokeCardEmpty from '@/components/PokeCardEmpty.vue'
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
-    json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
+    json: () => Promise.resolve({}),
   })
 );
 

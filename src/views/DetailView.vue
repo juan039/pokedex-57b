@@ -1,13 +1,15 @@
 <template>
   <div class="details">
     <div class="container">
-      <button type="button" class="d-block btn btn-primary text" @click="$router.back()">Go Back</button>
+      <button ref="buttonBack" type="button" class="d-block btn btn-primary text" @click="$router.back()">Go Back</button>
     </div>
     <PokeDetail
       v-if="!error"
       @addToFavorites="addToFavorites"
       :pokemon="pokemon"/>
-    <h2 v-else>
+    <h2
+      v-else
+      ref="error">
       {{ error }}
     </h2>
   </div>
@@ -18,7 +20,7 @@
 import PokeDetail from '@/components/PokeDetail.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'DetailView',
   components: {
     PokeDetail
   },
